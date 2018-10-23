@@ -78,7 +78,7 @@ namespace Vsxmd.Units
         /// <para>For <c>T:System.ArgumentException</c>, convert it to <c>[ArgumentException](http://msdn/path/to/System.ArgumentException)</c>.</para>
         /// </example>
         internal static string ToReferenceLink(this string memberName, bool useShortName = false) =>
-            new MemberName(memberName).ToReferenceLink(useShortName);
+            new MemberName(memberName + " ").ToReferenceLink(useShortName);
 
         /// <summary>
         /// Wrap the <paramref name="code"/> into Markdown backtick safely.
@@ -151,7 +151,7 @@ namespace Vsxmd.Units
             var text = node as XText;
             if (text != null)
             {
-                return text.Value.Escape().TrimStart(' ').Replace("            ", "");
+                return text.Value.Escape().TrimStart(' ').Replace("            ", string.Empty);
             }
 
             var child = node as XElement;
